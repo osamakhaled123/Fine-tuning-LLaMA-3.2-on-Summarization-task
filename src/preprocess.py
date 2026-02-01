@@ -1,2 +1,37 @@
 from huggingface_hub import login
-from config import token_name
+from _config import token_name
+from datasets import load_dataset
+from transformers import AutoTokenizer
+
+login(token=token_name)
+
+model_name = "meta-llama/Llama-3.2-3B"
+
+train_data = load_dataset("cnn_dailymail", "3.0.0", split="train[:40%]").shuffle(seed=42)
+test_data = load_dataset("cnn_dailymail", "3.0.0", split="test[:40%]").shuffle(seed=42)
+
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+tokenizer.pad_token = tokenizer.eos_token
+tokenizer.padding_side = "right"
+
+def format_data(example):
+    prompt = f"Summarize the following article:\n{example['article']}\nSummary: "
+    full_text = f"{prompt} {example['highlights']}"
+
+    tokenized_example = tokenizer(full_text, truncation=True)
+    tokenized_prompt_length = len(tokenizer(prompt, truncation=True)['input_ids'])
+
+    tokenized_summary = tokenized_example['input_ids'][tokenized_prompt_length:].copy()
+    labels = [-100] * tokenized_prompt_length
+    labels.extend(tokenized_summary)
+
+    tokenized_example['labels'] = labels
+
+    return tokenized_example
+
+
+tokenized_train_data = train_data.map(format_data, batched=True, remove_columns=train_data.column_names)
+tokenized_test_data = test_data.map(format_data, batched=True, remove_columns=test_data.column_names)
+
+tokenized_train_data.save_to_disk('./data/cnn_train_set')
+tokenized_test_data.save_to_disk('./data/cnn_test_set')

@@ -4,4 +4,7 @@
     <option name="sdkName" value="Python 3.11 (Fine-tuning-LLaMA-3.2-on-Summarization-task)" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.11 (Fine-tuning-LLaMA-3.2-on-Summarization-task)" project-jdk-type="Python SDK" />
+  <component name="PyCharmDSProjectLayout">
+    <option name="id" value="JupyterRightHiddenStructureLayout" />
+  </component>
 </project>
