@@ -7,8 +7,8 @@ login(token=token_name)
 
 model_name = "meta-llama/Llama-3.2-3B"
 
-#train_data = load_dataset("cnn_dailymail", "3.0.0", split="train[:40%]")
-test_data = load_dataset("cnn_dailymail", "3.0.0", split="test[:5%]")
+train_data = load_dataset("cnn_dailymail", "3.0.0", split="train[:40%]")
+test_data = load_dataset("cnn_dailymail", "3.0.0", split="test[:40%]")
 
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 tokenizer.pad_token = tokenizer.eos_token
@@ -42,8 +42,8 @@ def format_data(batch):
     }
 
 
-#tokenized_train_data = train_data.map(format_data, batched=True, remove_columns=train_data.column_names)
+tokenized_train_data = train_data.map(format_data, batched=True, remove_columns=train_data.column_names)
 tokenized_test_data = test_data.map(format_data, batched=True, remove_columns=test_data.column_names)
 
-#tokenized_train_data.save_to_disk('./data/cnn_train_set')
+tokenized_train_data.save_to_disk('./data/cnn_train_set')
 tokenized_test_data.save_to_disk('./data/cnn_test_set')
