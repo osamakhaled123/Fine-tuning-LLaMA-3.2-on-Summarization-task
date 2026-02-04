@@ -1,1 +1,1 @@
-ff52
+from peft import get_peft_model, LoraConfig
