@@ -6,3 +6,5 @@ dataset
 peft
 trl
 evaluate
+peft
+bitsandbytes
