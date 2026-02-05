@@ -6,5 +6,7 @@ dataset
 peft
 trl
 evaluate
+bert-score
 peft
 bitsandbytes
+
