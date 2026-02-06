@@ -5,3 +5,4 @@ __pycache__
 .idea
 data
 trial_and_error.ipynb
+jsonl_shards
