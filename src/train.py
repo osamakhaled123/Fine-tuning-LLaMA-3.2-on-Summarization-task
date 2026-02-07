@@ -5,13 +5,13 @@ import numpy as np
 from peft import get_peft_model, LoraConfig
 from trl import SFTTrainer, SFTConfig
 from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig, DataCollatorWithPadding
-from datasets import load_from_disk
+from datasets import load_dataset
 import evaluate
 
 login(token=token_name)
 
-tokenized_train_set = load_from_disk("./data/cnn_train_set")
-tokenized_test_set = load_from_disk("./data/cnn_test_set")
+tokenized_train_set = load_dataset("osamakhaledML9/cnn_tokenized_datasets")
+tokenized_test_set = load_dataset("osamakhaledML9/cnn_tokenized_datasets")
 
 model_name = "meta-llama/Llama-3.2-3B"
 

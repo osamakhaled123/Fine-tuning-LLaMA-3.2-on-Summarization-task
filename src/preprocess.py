@@ -1,6 +1,6 @@
 from huggingface_hub import login
 from _config import token_name
-from datasets import load_dataset
+from datasets import load_dataset, DatasetDict
 from transformers import AutoTokenizer
 
 login(token=token_name)
@@ -45,5 +45,8 @@ def format_data(batch):
 tokenized_train_data = train_data.map(format_data, batched=True, remove_columns=train_data.column_names)
 tokenized_test_data = test_data.map(format_data, batched=True, remove_columns=test_data.column_names)
 
-tokenized_train_data.save_to_disk('./data/cnn_train_set')
-tokenized_test_data.save_to_disk('./data/cnn_test_set')
+dataset_dict = DatasetDict({"train":tokenized_train_data,
+                            "test":tokenized_test_data})
+
+dataset_dict.push_to_hub("osamakhaledML9/cnn_tokenized_datasets",
+                         max_shard_size="500MB")
