@@ -10,8 +10,8 @@ import evaluate
 
 login(token=token_name)
 
-tokenized_train_set = load_dataset("osamakhaledML9/cnn_tokenized_datasets")
-tokenized_test_set = load_dataset("osamakhaledML9/cnn_tokenized_datasets")
+tokenized_train_set = load_dataset("osamakhaledML9/cnn_tokenized_datasets", split="train")
+tokenized_test_set = load_dataset("osamakhaledML9/cnn_tokenized_datasets", split="test")
 
 model_name = "meta-llama/Llama-3.2-3B"
 
@@ -69,7 +69,7 @@ def compute_metrics(eval_preds):
 
 
 training_args = SFTConfig(
-    output_dir="src/results",
+    output_dir="results",
     eval_strategy="step",
     per_device_train_batch_size=1,
     gradient_accumulation_steps=8,
