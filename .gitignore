@@ -4,4 +4,4 @@ trial_and_error.ipynb
 __pycache__
 .idea
 data
-src\sharding_hf_transfering.py
+src/sharding_hf_transfering.py

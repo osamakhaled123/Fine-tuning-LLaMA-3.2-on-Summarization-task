@@ -5,7 +5,7 @@ from transformers import AutoTokenizer
 
 login(token=token_name)
 
-model_name = "meta-llama/Llama-3.2-3B"
+model_name = "meta-llama/Llama-3.2-1B"
 
 train_data = load_dataset("cnn_dailymail", "3.0.0", split="train[:40%]")
 test_data = load_dataset("cnn_dailymail", "3.0.0", split="test[:40%]")
