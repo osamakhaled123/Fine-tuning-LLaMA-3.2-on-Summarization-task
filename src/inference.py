@@ -22,9 +22,10 @@ def summarize_beam_search(article, model, tokenizer, max_tokens=128):
             pad_token_id=tokenizer.eos_token_id,
         )
 
-    generated = output[0][len(inputs['input_ids']):]
-    return tokenizer.decode(generated, skip_special_tokens=True)
+    generated = output[0][inputs['input_ids'].shape[1]:]
 
+    generated_text = tokenizer.decode(generated, skip_special_tokens=True)
+    return generated_text
 
 def bert_score(tokenized_set, model, tokenizer, num_examples=10):
     predictions=[]
