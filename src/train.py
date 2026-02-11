@@ -1,5 +1,4 @@
-from huggingface_hub import login
-from _config import token_name
+import os
 import torch
 from unsloth import FastLanguageModel
 from peft import LoraConfig
@@ -8,7 +7,7 @@ from transformers import (BitsAndBytesConfig,
                           TrainerCallback)
 from datasets import load_dataset
 
-login(token=token_name)
+os.environ["HF_TOKEN"] = os.getenv("HF_TOKEN")
 
 tokenized_train_set = load_dataset("osamakhaledML9/cnn_tokenized_datasets", split="train[:5%]")
 tokenized_test_set = load_dataset("osamakhaledML9/cnn_tokenized_datasets", split="test")

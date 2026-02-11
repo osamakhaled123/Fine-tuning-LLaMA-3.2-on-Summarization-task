@@ -1,9 +1,8 @@
-from huggingface_hub import login
-from _config import token_name
+import os
 from datasets import load_dataset, DatasetDict
 from transformers import AutoTokenizer
 
-login(token=token_name)
+os.environ["HF_TOKEN"] = os.getenv("HF_TOKEN")
 
 model_name = "meta-llama/Llama-3.2-1B"
 
