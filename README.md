@@ -90,7 +90,25 @@ Evaluation was conducted on **200 samples** from the CNN/DailyMail test set usin
 
 Beam search was used during generation:
 
-```python
 num_beams = 3
 
-### Why BERTScore?
+### Why Beam Search?
+
+- Improves coherence
+- More robust than ROUGE for abstractive summarization
+- Captures contextual meaning instead of surface overlap
+- More stable than greedy decoding, as it calculates probability of entire sequence than token
+- Selects the highest probability summary
+
+---
+
+# 🌐 Deployment
+
+The model is deployed using:
+
+- Gradio
+- Hugging Face Spaces
+- Quantized base model + LoRA adapters
+
+## 🔗 Live App:
+**https://huggingface.co/spaces/osamakhaledML9/LLaMA-3.0-3B-eng_summarizer_app**
