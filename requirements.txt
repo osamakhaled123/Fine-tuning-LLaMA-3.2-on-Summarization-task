@@ -9,4 +9,5 @@ evaluate
 bert-score
 peft
 bitsandbytes
+unsloth
 

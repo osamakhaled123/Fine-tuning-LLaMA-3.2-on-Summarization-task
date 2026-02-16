@@ -34,7 +34,6 @@ def summarize_beam_search(article, model, tokenizer, max_tokens=128):
     generated_text = tokenizer.decode(generated, skip_special_tokens=True)
     return generated_text
 
-
 def bert_score(tokenized_set, model, tokenizer, num_examples=10):
     predictions = []
     references = []
